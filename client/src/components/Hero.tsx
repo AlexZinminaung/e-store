@@ -3,7 +3,7 @@ import { Link } from "react-router";
 const Hero = () => {
 
     return (
-        <section className='min-h-screen flex flex-col justify-center py-24 px-4 sm:px-8'>
+        <section className='min-h-dvh flex flex-col justify-center py-24 px-4 sm:px-8'>
             <div className='flex flex-col gap-10 w-fit py-10 border-b border-gray-800'>
             <p className=' text-blue-400 text-sm border w-fit p-2 rounded-full'>NEW COLLECTIONS 2026</p>
             <h1 className=' text-6xl sm:text-8xl font-bowlby'>Gear That <br/> <span className='text-blue-400'>Defines You.</span></h1>

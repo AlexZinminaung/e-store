@@ -9,7 +9,7 @@ const Signup = () => {
             {/* navbar */}
             <Navbar/>
             {/* Sign In form */}
-            <section className=" min-h-screen flex justify-center items-start py-24 px-4 sm:px-8">
+            <section className="min-h-dvh flex justify-center items-start py-24 px-4 sm:px-8">
                 <form className=" flex flex-col max-w-125 w-full p-10 gap-5 border border-gray-800 rounded-2xl">
                     <h1 className="text-2xl font-bowlby">Create Account</h1>
                     <p className=" text-xs text-gray-400">Join thousands of happy e-store customers</p>
