@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Bowlby+One&family=Climate+Crisis&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-bowlby: "Bowlby One", sans-serif;
+  --font-climate: "Climate Crisis", sans-serif;
+}
+
