@@ -4,7 +4,7 @@ import ProductCard from "./ProductCard";
 const Popular = () => {
 
     return (
-            <section className='flex flex-col gap-5 py-5 px-4 sm:px-8'>
+            <section id="popular" className='flex flex-col gap-5 py-5 px-4 sm:px-8'>
                 <span className='text-blue-400 '>TRENDING NOW</span>
                 <h3 className=' text-3xl'> Popular Items</h3>
 
