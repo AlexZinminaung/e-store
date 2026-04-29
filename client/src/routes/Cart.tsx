@@ -6,7 +6,10 @@ const Cart = () => {
     
     return (
         <main className="bg-black text-white">
+            {/* Navbar */}
             <Navbar/>
+
+            {/* Cart content */}
             <section className="min-h-screen flex flex-col justify-start items-center py-24 px-4 sm:px-8">
                 <div className=" w-full max-w-125 flex flex-col gap-20">
                     <h1 className="w-full text-3xl font-bowlby">Your Cart</h1>
