@@ -5,6 +5,8 @@ import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
 import { Link } from "react-router";
 
+import { FaArrowLeftLong } from "react-icons/fa6";
+
 const Product = () => {
 
     return (
@@ -15,9 +17,9 @@ const Product = () => {
             <Navbar/>
             
             <section className="w-full min-h-dvh flex justify-center items-start py-32  px-4 sm:px-8">
-                <div className="max-w-200 flex flex-col gap-2">
+                <div className="max-w-200 flex flex-col gap-10">
                     <div>
-                        <Link to={'/'} className=" py-1 px-2 border border-gray-800 rounded-lg text-gray-400">Go Back</Link>
+                        <Link to={'/'} className=" py-1 px-2 border border-gray-800 rounded-lg text-gray-400 flex items-center w-fit gap-2"><FaArrowLeftLong/>Back</Link>
                     </div>
                     <div className="flex gap-10 sm:flex-row flex-col">
                         {/* image container */}
