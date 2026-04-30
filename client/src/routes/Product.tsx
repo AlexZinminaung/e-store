@@ -2,18 +2,22 @@ import Navbar from "../components/Navbar";
 
 import iphoneImgUrl from '../../public/items/iphone17.jpg'
 import Footer from "../components/Footer";
+import ScrollToTop from "../components/ScrollToTop";
+import { Link } from "react-router";
 
 const Product = () => {
 
     return (
         <main className=" bg-black text-white">
+            {/* Scroll to top component will scroll top to when routes is change */}
+            <ScrollToTop/>
             {/* navbar */}
             <Navbar/>
             
             <section className="w-full min-h-dvh flex justify-center items-start py-32  px-4 sm:px-8">
                 <div className="max-w-200 flex flex-col gap-2">
                     <div>
-                        <button className=" py-1 px-2 border border-gray-800 rounded-lg text-gray-400">Go Back</button>
+                        <Link to={'/'} className=" py-1 px-2 border border-gray-800 rounded-lg text-gray-400">Go Back</Link>
                     </div>
                     <div className="flex gap-10 sm:flex-row flex-col">
                         {/* image container */}
