@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import Cart from './routes/Cart.tsx';
 import Signin from './routes/Signin.tsx';
 import Signup from './routes/Signup.tsx';
+import Product from './routes/Product.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -15,6 +16,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path='/cart' element={<Cart/>}/>
         <Route path='/signin' element={<Signin/>}/>
         <Route path='/signup' element={<Signup/>}/>
+        <Route path='/product/:id' element={<Product/>}/>
       </Routes>
     </BrowserRouter>
   </StrictMode>,

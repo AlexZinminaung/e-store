@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import type { Product } from "../types/products";
 
 interface ProductCardProps {
@@ -8,7 +9,7 @@ interface ProductCardProps {
 const ProductCard = ({product}: ProductCardProps) => {
 
     return (
-            <div className='max-w-64 rounded-xl border-2 border-gray-800 overflow-hidden hover:border-blue-400 hover:border-2'>
+            <Link to={`/product/${product.id}`} className='max-w-64 rounded-xl border-2 border-gray-800 overflow-hidden hover:border-blue-400 hover:border-2'>
                 <div className=' block overflow-hidden aspect-square'>
                     <img src={product.imgUrl} className="w-full h-full object-cover"/>
                 </div>
@@ -24,7 +25,7 @@ const ProductCard = ({product}: ProductCardProps) => {
                         <button className=' size-8 rounded-md bg-gray-800 aspect-square'>+</button>
                     </div>
                 </div>
-            </div>
+            </Link>
     );
 }
 
