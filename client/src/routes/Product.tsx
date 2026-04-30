@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 
 import iphoneImgUrl from '../../public/items/iphone17.jpg'
+import Footer from "../components/Footer";
 
 const Product = () => {
 
@@ -70,6 +71,9 @@ const Product = () => {
                     </div>
                 </div>
             </section>
+
+            {/* Footer */}
+            <Footer/>
 
         </main>
     )
