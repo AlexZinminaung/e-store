@@ -1,14 +1,41 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { CiShoppingCart } from "react-icons/ci";
 import { CiMenuFries } from "react-icons/ci";
 import { RxCross1 } from "react-icons/rx";
-
 import { Link } from "react-router";
+
+import { useContext } from "react";
+import { CartContext } from '../contexts/CartContext'
+import type { Product } from "../types/products";
 
 const Navbar = () => {
     const [isSearch, setSearch] = useState(false);
     const [isDropdown, setDropdown] = useState(false);
+    const [itemAmount, setItemAmount] = useState(0);
+    
+    // using context to get cart count
+    const context = useContext(CartContext);
+    if (!context) return null;
+
+    const { cart } = context;
+
+
+    useEffect(() => {
+        console.log("cart", cart);
+        getCartQty()
+    })
+
+    const getCartQty = () => {
+        // iterate cart [] array
+        // find qrt
+        let cartCount = 0;
+        cart.forEach( item => {
+            cartCount += item.qty
+        })
+
+        setItemAmount(cartCount);   
+    }
     
     // states function
     const handleClickSearch = () => {
@@ -51,7 +78,7 @@ const Navbar = () => {
                             <Link to={'/cart'} className='p-2 border border-gray-800 rounded-md hover:text-blue-400 hover:border-blue-400 flex items-center gap-1 relative'> 
                                 <CiShoppingCart className=' size-5'/> 
                                 <span className="hidden sm:flex">Chart</span>
-                                <span className=' absolute bg-red-600 aspect-square w-5 z-10 -top-2 -right-2 text-xs rounded-full flex justify-center items-center'>0</span>
+                                <span className=' absolute bg-red-600 aspect-square w-5 z-10 -top-2 -right-2 text-xs rounded-full flex justify-center items-center'>{itemAmount}</span>
                             </Link>
                             <Link to={'/signin'} className='hidden sm:flex p-2 border border-gray-800 rounded-md hover:text-blue-400 hover:border-blue-400'>Sign In</Link>
                             <Link to={'/signup'} className='hidden sm:flex p-2 border border-blue-400 text-black bg-blue-400 rounded-md '>Sign Up</Link>

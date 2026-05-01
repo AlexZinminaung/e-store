@@ -15,8 +15,13 @@ export const CartContext = createContext<CartContextType | null>(null);
 
 
 const CartProvider = ({ children }: { children: React.ReactNode }) => {
+
+    const getDirectLocalStrage = () => {
+        const localCart: CartItem[] = JSON.parse(localStorage.getItem("e-store-cart") || "[]");
+        return localCart
+    }
     // cart is also array of object <CartItem>
-    const [cart, setCart] = useState<CartItem[]>([]);
+    const [cart, setCart] = useState<CartItem[]>(getDirectLocalStrage);
 
     // fetch cart from localStorage
     useEffect(() => {
@@ -28,6 +33,9 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
     useEffect(() => {
         localStorage.setItem("e-store-cart", JSON.stringify(cart));
         }, [cart]);
+
+
+
 
     const addToCart = (product: Product) => {
         setCart(prev => {

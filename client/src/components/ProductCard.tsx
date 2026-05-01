@@ -1,5 +1,7 @@
 import { Link } from "react-router";
 import type { Product } from "../types/products";
+import { useContext } from "react";
+import { CartContext } from '../contexts/CartContext'
 
 interface ProductCardProps {
     product: Product
@@ -7,6 +9,12 @@ interface ProductCardProps {
 
 
 const ProductCard = ({product}: ProductCardProps) => {
+
+        // using context to add cart
+    const context = useContext(CartContext);
+    if (!context) return null;
+
+    const { addToCart } = context;
 
     // handler
     const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>, product:Product) => {
@@ -16,25 +24,9 @@ const ProductCard = ({product}: ProductCardProps) => {
         // checking if cart exist or not
         // if e-store-cart exist in local storage then use it
         // else use empty array []
-        addTocart(product);
+        addToCart(product);
     }
 
-    const addTocart = (product:Product) => {
-
-        const cart:(Product & {qty?: number})[] = JSON.parse(localStorage.getItem("e-store-cart") || "[]");
-        const existing = cart.find(item => item.id == product.id);
-        if (existing)
-        {
-            existing.qty = (existing.qty || 1) + 1
-
-        }
-
-        else {
-            cart.push({...product, qty: 1})
-        }
-
-        localStorage.setItem("e-store-cart", JSON.stringify(cart));
-    }
     return (
             <Link to={`/product/${product.id}`} className='max-w-64 rounded-xl border-2 border-gray-800 overflow-hidden hover:border-blue-400 hover:border-2'>
                 <div className=' block overflow-hidden aspect-square'>

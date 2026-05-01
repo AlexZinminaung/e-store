@@ -7,17 +7,21 @@ import Cart from './routes/Cart.tsx';
 import Signin from './routes/Signin.tsx';
 import Signup from './routes/Signup.tsx';
 import Product from './routes/Product.tsx';
+import CartProvider from './contexts/CartContext.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path='/cart' element={<Cart/>}/>
-        <Route path='/signin' element={<Signin/>}/>
-        <Route path='/signup' element={<Signup/>}/>
-        <Route path='/product/:id' element={<Product/>}/>
-      </Routes>
-    </BrowserRouter>
+    <CartProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path='/cart' element={<Cart/>}/>
+          <Route path='/signin' element={<Signin/>}/>
+          <Route path='/signup' element={<Signup/>}/>
+          <Route path='/product/:id' element={<Product/>}/>
+        </Routes>
+      </BrowserRouter>
+    </CartProvider>
+
   </StrictMode>,
 )
