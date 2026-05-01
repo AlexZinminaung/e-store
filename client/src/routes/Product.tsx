@@ -1,6 +1,4 @@
 import Navbar from "../components/Navbar";
-
-import iphoneImgUrl from '../../public/items/iphone17.jpg'
 import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
 import { Link } from "react-router";
@@ -24,7 +22,7 @@ const Product = () => {
                     <div className="flex gap-10 sm:flex-row flex-col">
                         {/* image container */}
                         <div className="flex-1 w-full h-fit block overflow-hidden aspect-square border border-gray-400 rounded-2xl">
-                            <img src={iphoneImgUrl} className="w-full h-full object-cover"/>
+                            <img src={"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80"} className="w-full h-full object-cover"/>
                         </div>
 
                         {/* Product detail container */}
