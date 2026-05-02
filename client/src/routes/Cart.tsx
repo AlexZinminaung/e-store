@@ -25,6 +25,7 @@ const Cart = () => {
                 <div className=" w-full max-w-200 flex flex-col gap-20">
                     <h1 className="w-full text-3xl font-bowlby">Your Cart</h1>
                     {
+                        //  if there is items in cart then dislay them else display cart is empty
                         cart.length ? 
                         // display card itmes 
                         <div className="w-full flex flex-col items-center gap-4">
@@ -64,7 +65,7 @@ const Cart = () => {
                         </div>
 
                         :
-
+                        // cart is empty
                         <div className="w-full flex flex-col items-center gap-5">
                             <p className=" size-56 flex justify-center items-center">
                                 <GiShoppingCart className=" size-52"/>
