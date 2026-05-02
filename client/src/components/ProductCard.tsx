@@ -10,7 +10,7 @@ interface ProductCardProps {
 
 const ProductCard = ({product}: ProductCardProps) => {
 
-        // using context to add cart
+    // using context to add cart
     const context = useContext(CartContext);
     if (!context) return null;
 

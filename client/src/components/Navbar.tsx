@@ -7,7 +7,6 @@ import { Link } from "react-router";
 
 import { useContext } from "react";
 import { CartContext } from '../contexts/CartContext'
-import type { Product } from "../types/products";
 
 const Navbar = () => {
     const [isSearch, setSearch] = useState(false);
