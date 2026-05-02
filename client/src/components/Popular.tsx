@@ -2,12 +2,13 @@ import ProductCard from "./ProductCard";
 import { popularProducts } from "../apis/popularApi";
 import { useEffect, useState } from "react";
 import type { Product } from "../types/products";
+import ProductSkeleton from "./skeletons/ProductSkeleton";
 
 const Popular = () => {
 
     const [products, setProducts] = useState<Product[]>([]);
     const [category, setCategory] = useState("all");
-    
+
     const filterProducts = category == "all" ? products : products.filter( product => product.category == category) 
 
     // state functions
@@ -22,9 +23,40 @@ const Popular = () => {
 
     // useEffect to fetch api
     useEffect(() => {
-        fetchPopularProducts();
+        const timer = setTimeout(() => {
+            fetchPopularProducts();
+        }, 3000);
+
+        return () => clearTimeout(timer);
     }, [])
 
+
+    // check if loading
+    if (products.length == 0) {
+        return (
+            <div className="flex flex-col gap-5 w-full py-5 px-4 sm:px-8">
+                
+                <div className="w-full flex flex-col gap-5 animate-pulse">
+                    <div className="bg-gray-800 min-w-32 w-2/10 size-6 rounded-md"></div>
+                    <div className="flex flex-wrap w-8/10 gap-2">
+                        <div className="bg-gray-800 w-10 size-6 rounded-full"></div>
+                        <div className="bg-gray-800 w-16 size-6 rounded-full"></div>
+                        <div className="bg-gray-800 w-16 size-6 rounded-full"></div>
+                        <div className="bg-gray-800 w-16 size-6 rounded-full"></div>
+                        <div className="bg-gray-800 w-24 size-6 rounded-full"></div>
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 ">
+                    <ProductSkeleton/>
+                    <ProductSkeleton/>
+                    <ProductSkeleton/>
+                    <ProductSkeleton/>
+                    <ProductSkeleton/>
+                </div>
+            </div>
+        );
+    }
     return (
             <section id="popular" className='flex flex-col gap-5 py-5 px-4 sm:px-8'>
                 <span className='text-blue-400 '>TRENDING NOW</span>
