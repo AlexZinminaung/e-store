@@ -34,7 +34,7 @@ const Cart = () => {
                                 {/* Cart product box */}
                                 {
                                     cart.map( item => {
-                                        return <CartCard key={item.id}/>
+                                        return <CartCard key={item.id} item={item}/>
                                     })
                                 }
                             </div>

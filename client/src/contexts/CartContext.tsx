@@ -6,8 +6,9 @@ type CartItem = Product & {
 };
 
 type CartContextType = {
-  cart: CartItem[];
-  addToCart: (product: Product) => void;
+  cart: CartItem[],
+  addToCart: (product: Product) => void,
+  removeFromCart: (product: number) => void
 };
 
 // array of object type
@@ -53,8 +54,12 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
         });
     };
 
+    const removeFromCart = (removeId: number) => {
+        setCart(prev => prev.filter( item => item.id != removeId ))
+    }
+
     return (
-        <CartContext.Provider value={{ cart, addToCart }}>
+        <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
             {children}
         </CartContext.Provider>
     );
