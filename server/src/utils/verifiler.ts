@@ -3,19 +3,32 @@ const nodemailer = require("nodemailer");
 // Create a transporter using SMTP
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
-  port: 587,
-  secure: false, // use STARTTLS (upgrade connection to TLS after connecting)
+  port: 465,
+  secure: true,
   auth: {
     user: process.env.EMAIL,
     pass: process.env.PSW,
   },
+
+  connectionTimeout: 10000,   // 10s to establish connection
+  greetingTimeout: 10000,     // 10s to wait for SMTP greeting
+  socketTimeout: 10000,       // 10s of inactivity before aborting
+});
+
+// Verify transporter on startup
+transporter.verify((error: Error | null) => {
+  if (error) {
+    console.error("SMTP connection failed:", error);
+  } else {
+    console.log("SMTP server is ready");
+  }
 });
 
 const sendVerification = async (email: string, token: string) => {
 
     try {
         const info = await transporter.sendMail({
-            from: `"Email Verification For E-store" <${process.env.email}>`, // sender address
+            from: `"Email Verification For E-store" <${process.env.EMAIL}>`, // sender address
             to: `${email}`, // list of recipients
             subject: "Hello", // subject line
             text: "Please Verify Your Email Here", // plain text body

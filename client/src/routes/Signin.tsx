@@ -34,21 +34,20 @@ const reducer = (state: State, action: Action) => {
 const Signin = () => {
     const [state, dispatch] = useReducer(reducer, initState);
 
-
     // handler function
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
 
-    switch (name) {
-      case "email":
-        dispatch({ type: "change_email", payload: value });
-        break;
+        switch (name) {
+        case "email":
+            dispatch({ type: "change_email", payload: value });
+            break;
 
-      case "password":
-        dispatch({ type: "change_password", payload: value });
-        break;
-    }
-  };
+        case "password":
+            dispatch({ type: "change_password", payload: value });
+            break;
+        }
+    };
 
     return (
         <main className="bg-black text-white">

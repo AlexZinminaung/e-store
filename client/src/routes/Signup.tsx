@@ -1,11 +1,13 @@
 import { useReducer } from "react";
 import { Link } from "react-router";
 import Navbar from "../components/Navbar";
+import userApi from "../apis/userApi";
 
 type State = {
   name: string;
   email: string;
   password: string;
+  status: string;
 };
 
 type Action =
@@ -13,8 +15,25 @@ type Action =
   | { type: "change_email"; payload: string }
   | { type: "change_password"; payload: string };
 
+type SignUpData = {
+  name: string;
+  email: string;
+  password: string;
+};
 
-const initState: State = {name:'', email:'', password:''}
+const SignUpUser = async (data: SignUpData) => {
+  try {
+    const res = await userApi.post("/api/user/create", data);
+    console.log(res.data);
+    return res.data;
+
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
+
+const initState: State = {name:'', email:'', password:'', status: 'idle'}
 
 const reducer = (state: State, action: Action) => {
     switch (action.type) {
@@ -37,6 +56,7 @@ const reducer = (state: State, action: Action) => {
 const Signup = () => {
     const [state, dispatch] = useReducer(reducer, initState);
 
+
     // handler function
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -56,13 +76,23 @@ const Signup = () => {
         }
     };
 
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        console.log('Sign up')
+        await SignUpUser(state)
+        console.log("after call");
+    }
+
     return (
         <main className="bg-black text-white">
             {/* navbar */}
             <Navbar/>
             {/* Sign In form */}
             <section className="min-h-dvh flex justify-center items-start py-32 px-4 sm:px-8">
-                <form className=" flex flex-col max-w-125 w-full p-10 gap-5 border border-gray-800 rounded-2xl">
+                <form 
+                    onSubmit={handleSubmit}
+                    className=" flex flex-col max-w-125 w-full p-10 gap-5 border border-gray-800 rounded-2xl"
+                >
                     <h1 className="text-2xl font-bowlby">Create Account</h1>
                     <p className=" text-xs text-gray-400">Join thousands of happy e-store customers</p>
                     <label htmlFor={'username'}>Full Name</label>

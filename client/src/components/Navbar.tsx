@@ -21,7 +21,6 @@ const Navbar = () => {
 
 
     useEffect(() => {
-        console.log("cart", cart);
         getCartQty()
     })
 
