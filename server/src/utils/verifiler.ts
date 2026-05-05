@@ -9,20 +9,11 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL,
     pass: process.env.PSW,
   },
-
-  connectionTimeout: 10000,   // 10s to establish connection
-  greetingTimeout: 10000,     // 10s to wait for SMTP greeting
-  socketTimeout: 10000,       // 10s of inactivity before aborting
+  family: 4, // 👈 force IPv4
+  connectionTimeout: 10_000,
+  greetingTimeout: 10_000,
 });
 
-// Verify transporter on startup
-transporter.verify((error: Error | null) => {
-  if (error) {
-    console.error("SMTP connection failed:", error);
-  } else {
-    console.log("SMTP server is ready");
-  }
-});
 
 const sendVerification = async (email: string, token: string) => {
 
