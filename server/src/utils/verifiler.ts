@@ -8,10 +8,7 @@ const transporter = nodemailer.createTransport({
   auth: {
     user: process.env.EMAIL,
     pass: process.env.PSW,
-  },
-  family: 4, // 👈 force IPv4
-  connectionTimeout: 10_000,
-  greetingTimeout: 10_000,
+  }
 });
 
 
