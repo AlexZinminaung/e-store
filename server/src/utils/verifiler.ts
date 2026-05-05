@@ -19,7 +19,7 @@ const sendVerification = async (email: string, token: string) => {
             to: `${email}`, // list of recipients
             subject: "Hello", // subject line
             text: "Please Verify Your Email Here", // plain text body
-            html: `<a href="http://localhost:3000/api/user/verify/${token}">Click Here</a>`, // HTML body
+            html: `<a href="https://e-store-c0yd.onrender.com/api/user/verify/${token}">Click Here</a>`, // HTML body
         });
 
         console.log("Message sent: %s", info.messageId);
