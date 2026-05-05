@@ -118,4 +118,11 @@ const loginUser = asyncHandler( async (req: Request, res: Response) => {
 })
 
 
-module.exports = { createUser, verifyEmail, loginUser }
+// fecth user data
+const getUser = asyncHandler( async (req:Request, res:Response) => {
+    const userId = req.user?.id;
+
+    return res.status(200).json(userId);
+})
+
+module.exports = { createUser, verifyEmail, loginUser, getUser}
