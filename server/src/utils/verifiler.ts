@@ -18,8 +18,8 @@ const sendVerification = async (email: string, token: string) => {
             from: `"Email Verification For E-store" <${process.env.email}>`, // sender address
             to: `${email}`, // list of recipients
             subject: "Hello", // subject line
-            text: "Hello world?", // plain text body
-            html: "<b>Hello world?</b>", // HTML body
+            text: "Please Verify Your Email Here", // plain text body
+            html: `<a href="http://localhost:3000/api/user/verify/${token}">Click Here</a>`, // HTML body
         });
 
         console.log("Message sent: %s", info.messageId);

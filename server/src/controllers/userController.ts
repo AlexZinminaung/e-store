@@ -3,6 +3,7 @@ const asyncHandler = require('express-async-handler')
 const bcrypt = require('bcrypt');
 const { pool } = require('../configs/database');
 const { sendVerification } = require('../utils/verifiler');
+const jwt = require('jsonwebtoken');
 
 // register a new user
 
@@ -33,13 +34,18 @@ const createUser = asyncHandler( async (req: Request, res: Response) => {
 
         // update password for unverified email (user)
         await pool.query("UPDATE users SET password_hash = $1 WHERE email = $2", [hashPassword, email])
-        await sendVerification(email, 'token');
+        // create token for 5 min 
+        const token5min = jwt.sign({ id:  existUser.id}, process.env.JWT_KEY);
+        await sendVerification(email, token5min);
         return res.status(200).json({message: "Password is Updated"})
         
     }
     // create new user
-    const newUserQuery = await pool.query("INSERT INTO users (email, name, password_hash) VALUES ($1, $2, $3)", [email, name, hashPassword]);
-    await sendVerification(email, 'token');
+    const newUserQuery = await pool.query("INSERT INTO users (email, name, password_hash) VALUES ($1, $2, $3) RETURNING *", [email, name, hashPassword]);
+    const newUser = newUserQuery.rows[0]
+    // create token for 5 min 
+    const token5min = jwt.sign({ id:  newUser.id}, process.env.JWT_KEY);
+    await sendVerification(email, token5min);
     return res.status(200).json({message: "User is Created"})
     
 
@@ -47,5 +53,28 @@ const createUser = asyncHandler( async (req: Request, res: Response) => {
     
 })
 
+// to verify email
+const verifyEmail = asyncHandler( async (req: Request, res: Response) => {
 
-module.exports = { createUser }
+    // check if token exist
+    const {token} = req.params;
+    if (!token) return res.status(404).json({message: "Token not found"});
+
+    // verify token
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_KEY);
+        // verify email in database
+        await pool.query("UPDATE users SET is_verified = true WHERE id = $1", [decoded.id])
+        return res.status(200).json({message: "verify"})
+    }
+    catch(err: any)
+    {
+        console.log('Error verifying Token');
+        console.error(err.message);
+        res.status(400).json(err);
+    }
+
+})
+
+
+module.exports = { createUser, verifyEmail }
