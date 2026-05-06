@@ -2,34 +2,45 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const nodemailer = require("nodemailer");
 // Create a transporter using SMTP
-const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
-    auth: {
-        user: process.env.EMAIL,
-        pass: process.env.PSW,
-    },
-    family: 4, // 👈 force IPv4
-    connectionTimeout: 10_000,
-    greetingTimeout: 10_000,
-});
+// const transporter = nodemailer.createTransport({
+//   host: "smtp.gmail.com",
+//   port: 587,
+//   secure: false, // use STARTTLS (upgrade connection to TLS after connecting)
+//   auth: {
+//     user: process.env.EMAIL,
+//     pass: process.env.PSW,
+//   },
+// });
+// const sendVerification = async (email: string, token: string) => {
+//     try {
+//         const info = await transporter.sendMail({
+//             from: `"Email Verification For E-store" <${process.env.EMAIL}>`, // sender address
+//             to: `${email}`, // list of recipients
+//             subject: "Hello", // subject line
+//             text: "Please Verify Your Email Here", // plain text body
+//             html: `<a href="https://e-store-c0yd.onrender.com/api/user/verify/${token}">Click Here</a>`, // HTML body
+//         });
+//         console.log("Message sent: %s", info.messageId);
+//         // Preview URL is only available when using an Ethereal test account
+//         console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+//         } 
+//         catch (err) {
+//             console.error("Error while sending mail:", err);
+//         }
+// }
+const { Resend } = require('resend');
+const resend = new Resend(process.env.RESENT_API);
 const sendVerification = async (email, token) => {
-    try {
-        const info = await transporter.sendMail({
-            from: `"Email Verification For E-store" <${process.env.EMAIL}>`, // sender address
-            to: `${email}`, // list of recipients
-            subject: "Hello", // subject line
-            text: "Please Verify Your Email Here", // plain text body
-            html: `<a href="https://e-store-c0yd.onrender.com/api/user/verify/${token}">Click Here</a>`, // HTML body
-        });
-        console.log("Message sent: %s", info.messageId);
-        // Preview URL is only available when using an Ethereal test account
-        console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+    const { data, error } = await resend.emails.send({
+        from: 'Acme <onboarding@resend.dev>',
+        to: [`${email}`],
+        subject: 'Hello World',
+        html: '<strong>It works!</strong>',
+    });
+    if (error) {
+        return console.error({ error });
     }
-    catch (err) {
-        console.error("Error while sending mail:", err);
-    }
+    console.log({ data });
 };
 module.exports = { sendVerification };
 //# sourceMappingURL=verifiler.js.map

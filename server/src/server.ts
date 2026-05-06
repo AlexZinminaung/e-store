@@ -9,7 +9,7 @@ const PORT = 3000
 
 // using middleware
 app.use(cors({
-  origin: "https://e-store-six-tau.vercel.app",
+  origin: "http://localhost:5173",
   credentials: true
 }));
 app.use(express.json())

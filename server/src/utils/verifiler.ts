@@ -3,14 +3,15 @@ const nodemailer = require("nodemailer");
 // Create a transporter using SMTP
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
+  port: 587,
+  pool: true, // <--- Add this
+  maxConnections: 5,
+  maxMessages: 100,
   auth: {
     user: process.env.EMAIL,
     pass: process.env.PSW,
-  }
+  },
 });
-
 
 const sendVerification = async (email: string, token: string) => {
 
@@ -31,5 +32,24 @@ const sendVerification = async (email: string, token: string) => {
             console.error("Error while sending mail:", err);
         }
 }
+
+// const { Resend } = require('resend');
+
+// const resend = new Resend(process.env.RESENT_API);
+
+// const sendVerification = async (email:string, token:string) => {
+//   const { data, error } = await resend.emails.send({
+//     from: `Email Verification system <onboarding@resend.dev>`,
+//     to: [`${email}`],
+//     subject: 'Verify Email',
+//     html: `<a href="https://e-store-c0yd.onrender.com/api/user/verify/${token}">Click Here</a>`,
+//   });
+
+//   if (error) {
+//     return console.error({ error });
+//   }
+
+//   console.log({ data });
+// }
 
 module.exports = { sendVerification }
