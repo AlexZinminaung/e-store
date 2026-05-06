@@ -5,8 +5,11 @@ const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 587,
   pool: true, // <--- Add this
+  secure:false,
+  
   maxConnections: 5,
   maxMessages: 100,
+  family: 4,
   auth: {
     user: process.env.EMAIL,
     pass: process.env.PSW,
