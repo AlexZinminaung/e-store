@@ -22,7 +22,7 @@ const CartCard = ({item}: CartCardProps) => {
     const { removeFromCart } = context;
 
     // handler function
-    const handleRemoveBtn = (e, id: number) => {
+    const handleRemoveBtn = (e: React.MouseEvent<HTMLButtonElement>, id: number) => {
         e.preventDefault();   // stops Link navigation
         e.stopPropagation();
         removeFromCart(id);

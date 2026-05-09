@@ -45,7 +45,7 @@ const Navbar = () => {
     }
 
     return (
-        <nav className='flex gap-2 justify-between items-center fixed w-full z-10 backdrop-blur-2xl sm:gap-8 border-b border-gray-800 py-4 px-4 sm:px-8'>
+        <nav className='flex gap-2 justify-between items-center fixed w-full z-10 backdrop-blur-2xl sm:gap-8 bg-black border-b border-gray-800 py-4 px-4 sm:px-8'>
             {/* Do not display Logo if user search is on */}
             {!isSearch && <Link to={'/'} className='text-xl font-bowlby  text-nowrap'>E-<span className=' text-blue-400'>Store</span></Link>}
 
@@ -110,7 +110,7 @@ const Navbar = () => {
             {/* Dropdown menu form mobile */}
             {
                 isDropdown &&
-                    <div className="flex flex-col sm:hidden absolute top-full left-0 w-full z-10 bg-gray-800 py-2">
+                    <div className="flex flex-col sm:hidden absolute top-full left-0 w-full z-10 bg-black py-2 border-b border-gray-800">
                         <Link to={'/signup'} className="w-full py-2"><span className="px-4">Sign Up</span></Link>
                         <Link to={'/signin'} className="w-full py-2"><span className="px-4">Sign In</span></Link>
                     </div>
