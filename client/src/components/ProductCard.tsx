@@ -7,7 +7,6 @@ interface ProductCardProps {
     product: Product
 }
 
-
 const ProductCard = ({product}: ProductCardProps) => {
 
     // using context to add cart
@@ -24,7 +23,7 @@ const ProductCard = ({product}: ProductCardProps) => {
         // checking if cart exist or not
         // if e-store-cart exist in local storage then use it
         // else use empty array []
-        addToCart(product);
+        addToCart(product, 1);
     }
 
     return (

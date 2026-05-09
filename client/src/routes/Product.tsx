@@ -2,22 +2,23 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
 import { Link, useParams } from "react-router";
-
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import { productDetail } from "../apis/apis";
 import type { Product as ProductType } from "../types/products";
+import { useContext } from "react";
+import { CartContext } from '../contexts/CartContext'
+
 
 const getProductInfo = (id: number, productDetail: ProductType[]) => {
     const product = productDetail.find((product) => product.id === id);
-    console.log(product);
     return product
 
 }
 
 const Product = () => {
     const [product , setProduct] = useState<ProductType | null>(null);
-
+    const [productCount, setProductCount] = useState(0);
     const { id } = useParams();
 
     useEffect(() => {
@@ -26,6 +27,25 @@ const Product = () => {
         setProduct(result);
 
     }, [id])
+
+    // handler function
+        // using context to add cart
+    const context = useContext(CartContext);
+    if (!context) return null;
+
+    const { addToCart } = context;
+    // handler
+    const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>, product:ProductType) => {
+        e.preventDefault();   // stops Link navigation
+        e.stopPropagation();
+
+        // checking if cart exist or not
+        // if e-store-cart exist in local storage then use it
+        // else use empty array []
+        addToCart(product, productCount);
+        // reset count to 0 again
+        setProductCount(0);
+    }
 
     if (!product) return ;
 
@@ -49,7 +69,7 @@ const Product = () => {
 
                         {/* Product detail container */}
                         <div className="flex-1 flex flex-col gap-8">
-                            <span className="p-2 border border-blue-400 rounded-lg text-blue-400 bg-blue-400/20 w-fit">{ product.category.toUpperCase() + " " + product.badge.toUpperCase()}</span>
+                            <span className="p-2 border border-blue-400 rounded-lg text-blue-400 bg-blue-400/20 w-fit">{ product.badge.toUpperCase() + " " + product.category.toUpperCase() }</span>
                             <h2 className="text-3xl font-bowlby">{product.title}</h2>
                             <span className="text-2xl font-bowlby">${product.price}</span>
                             <p className="text-sm text-gray-400">{product.description}</p>
@@ -73,17 +93,17 @@ const Product = () => {
                             {/* Adding Qty Button */}
                             <div className="flex gap-2 items-center">
                                 <div className="flex border rounded-lg border-gray-800 w-fit overflow-hidden">
-                                    <button className="py-2 px-5 hover:bg-gray-800 text-white">+</button>
-                                    <p className="py-2 px-5 border-gray-800">1</p>
-                                    <button className="py-2 px-5 hover:bg-gray-800 text-white">-</button>
+                                    <button onClick={() => { setProductCount(prev => prev + 1)}} className="py-2 px-5 hover:bg-gray-800 text-white">+</button>
+                                    <p className="py-2 px-5 border-gray-800">{productCount}</p>
+                                    <button onClick={() => { setProductCount(prev => prev > 0 ? prev - 1 : prev)}} className="py-2 px-5 hover:bg-gray-800 text-white">-</button>
                                 </div>
                                 <span className=" text-sm text-gray-400">Qty</span>
                             </div>
 
                             {/* Add to Cart Button */}
                             <div className="flex gap-2">
-                                <button className="flex-1 bg-blue-400 text-black p-2 rounded-md">Add to Cart</button>
-                                <button className="border border-gray-800 p-2 rounded-md hover:text-blue-400 hover:border-blue-400">View Cart</button>
+                                <button onClick={(e) => { handleAddToCart(e, product)}} className="flex-1 bg-blue-400 text-black p-2 rounded-md">Add to Cart</button>
+                                <Link to={'/cart'} className="border border-gray-800 p-2 rounded-md hover:text-blue-400 hover:border-blue-400">View Cart</Link>
                             </div>
 
                         </div>

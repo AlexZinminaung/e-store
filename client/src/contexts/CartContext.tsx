@@ -7,7 +7,7 @@ type CartItem = Product & {
 
 type CartContextType = {
   cart: CartItem[],
-  addToCart: (product: Product) => void,
+  addToCart: (product: Product, amount: number) => void,
   removeFromCart: (product: number) => void
 };
 
@@ -38,19 +38,19 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
 
 
-    const addToCart = (product: Product) => {
+    const addToCart = (product: Product, amount: number) => {
         setCart(prev => {
         const existing = prev.find(item => item.id === product.id);
 
         if (existing) {
             return prev.map(item =>
             item.id === product.id
-                ? { ...item, qty: item.qty + 1 }
+                ? { ...item, qty: item.qty + amount }
                 : item
             );
         }
 
-        return [...prev, { ...product, qty: 1 }];
+        return [...prev, { ...product, qty: amount }];
         });
     };
 

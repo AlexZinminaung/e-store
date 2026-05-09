@@ -3,6 +3,7 @@ import type { Product } from "../types/products";
 
 import { useContext } from "react";
 import { CartContext } from '../contexts/CartContext'
+import { Link } from "react-router";
 
 type CartItem = Product & {
   qty: number;
@@ -26,7 +27,7 @@ const CartCard = ({item}: CartCardProps) => {
     }
 
     return (
-            <div className="w-full flex justify-between p-2 items-center border border-gray-800 rounded-2xl">
+            <Link to={`/product/${item.id}`} className="w-full flex justify-between p-2 items-center border border-gray-800 rounded-2xl">
                 <div className="flex gap-2 sm:gap-5 items-center">
                     <div className="block overflow-hidden aspect-square size-24 rounded-lg">
                         <img className="w-full h-full object-cover" src={item.imgUrl}/>
@@ -41,7 +42,7 @@ const CartCard = ({item}: CartCardProps) => {
                     <span className=" font-bowlby text-xs text-blue-400">${item.price * item.qty}</span>
                     <button onClick={() => {handleRemoveBtn(item.id)}} className="p-2 border border-gray-800 rounded-lg hover:border-red-400 hover:text-red-400"><RxCross1/></button>
                 </div>
-            </div>   
+            </Link>   
     )
 }
 

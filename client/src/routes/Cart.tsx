@@ -3,17 +3,28 @@ import Navbar from "../components/Navbar";
 import { GiShoppingCart } from "react-icons/gi";
 import CartCard from "../components/CartCard";
 
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from '../contexts/CartContext'
 
 
 const Cart = () => {
     
+    const [total , setTotal] = useState(0);
+
     // using context to cart info
     const context = useContext(CartContext);
     if (!context) return null;
 
     const { cart } = context;
+
+        useEffect(() => {
+        const sum = cart.reduce((acc, current) => {
+            return acc + (current.price * current.qty);
+        }, 0);
+
+        setTotal(sum);
+        
+        }, [cart])
 
     return (
         <main className="bg-black text-white">
@@ -44,7 +55,7 @@ const Cart = () => {
                                 <div className="w-full border-b border-gray-800 py-2">
                                     <p className="flex justify-between text-gray-400">
                                         <span>Subtotal</span>
-                                        <span>$4000</span>
+                                        <span>${total}</span>
                                     </p>
                                 </div>
 
@@ -57,7 +68,7 @@ const Cart = () => {
 
                                 <div className="w-full py-2">
                                     <p className="flex flex-col gap-2">
-                                        <span className=" font-bowlby text-lg">Total</span>
+                                        <span className=" font-bowlby text-lg">${total}</span>
                                         <button className="bg-blue-400 text-black p-3 rounded-lg">Checkout</button>
                                     </p>
                                 </div>
