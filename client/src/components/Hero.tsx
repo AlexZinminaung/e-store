@@ -4,10 +4,10 @@ import Slider from "./Slider";
 const Hero = () => {
 
     return (
-        <section className='min-h-dvh flex flex-col justify-center gap-5 py-32 px-4 sm:px-8'>
+        <section className='min-h-dvh flex flex-col justify-center gap-5 py-16 px-4 sm:px-8'>
             <div className='flex flex-col gap-10 w-fit py-10 border-b border-gray-800'>
                 <p className=' text-blue-400 text-sm border w-fit p-2 rounded-full'>NEW COLLECTIONS 2026</p>
-                <h1 className=' text-6xl sm:text-8xl font-bowlby'>Gear That <br/> <span className='text-blue-400'>Defines You.</span></h1>
+                <h1 className=' text-4xl sm:text-6xl font-bowlby'>Discover<br/> <span className='text-blue-400'> Premium Electronics.</span></h1>
                 <p className='text-gray-400'>Premium mobiles, laptops, and accessories built for the way you move. No compromises.</p>
             </div>  
             
@@ -20,7 +20,7 @@ const Hero = () => {
             </div>
 
 
-            <ul className='flex gap-10 py-10'>
+            <ul className='flex gap-10 py-5'>
                 <li className='flex flex-col'>
                     <span className=' font-bowlby text-2xl'>12K+</span>
                     <span className=' text-gray-400 text-sm'>Products</span>

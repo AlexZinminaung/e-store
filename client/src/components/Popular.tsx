@@ -23,18 +23,15 @@ const Popular = () => {
 
     // useEffect to fetch api
     useEffect(() => {
-        const timer = setTimeout(() => {
-            fetchPopularProducts();
-        }, 3000);
-
-        return () => clearTimeout(timer);
+        fetchPopularProducts();
+        
     }, [])
 
 
     // check if loading
     if (products.length == 0) {
         return (
-            <div className="flex flex-col gap-5 w-full py-5 px-4 sm:px-8">
+            <div className="flex flex-col gap-5 w-full px-4 sm:px-8">
                 
                 <div className="w-full flex flex-col gap-5 animate-pulse">
                     <div className="bg-gray-800 min-w-32 w-2/10 size-6 rounded-md"></div>
@@ -58,7 +55,7 @@ const Popular = () => {
         );
     }
     return (
-            <section id="popular" className='flex flex-col gap-5 py-5 px-4 sm:px-8'>
+            <section id="popular" className='flex flex-col gap-5 px-4 sm:px-8'>
                 <span className='text-blue-400 '>TRENDING NOW</span>
                 <h3 className=' text-3xl'> Popular Items</h3>
 

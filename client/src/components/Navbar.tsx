@@ -110,7 +110,7 @@ const Navbar = () => {
             {/* Dropdown menu form mobile */}
             {
                 isDropdown &&
-                    <div className="flex flex-col sm:hidden absolute top-full left-0 w-full z-10 bg-gray-800">
+                    <div className="flex flex-col sm:hidden absolute top-full left-0 w-full z-10 bg-gray-800 py-2">
                         <Link to={'/signup'} className="w-full py-2"><span className="px-4">Sign Up</span></Link>
                         <Link to={'/signin'} className="w-full py-2"><span className="px-4">Sign In</span></Link>
                     </div>
