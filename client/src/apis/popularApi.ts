@@ -66,6 +66,89 @@ const popularProducts = [
   }
 ]
 
+const trendingProducts = [
+  {
+    id: 9,
+    imgUrl:
+      "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80",
+    category: "wearables",
+    badge: "Trending",
+    title: "Apple Watch Ultra X",
+    price: 899
+  },
+  {
+    id: 10,
+    imgUrl:
+      "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=80",
+    category: "tablet",
+    badge: "Hot",
+    title: "iPad Pro M5",
+    price: 1399
+  },
+  {
+    id: 11,
+    imgUrl:
+      "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=800&q=80",
+    category: "gaming",
+    badge: "Popular",
+    title: "PlayStation 6",
+    price: 699
+  },
+  {
+    id: 12,
+    imgUrl:
+      "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=80",
+    category: "camera",
+    badge: "New",
+    title: "Canon EOS R7",
+    price: 1899
+  },
+  {
+    id: 13,
+    imgUrl:
+      "https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=800&q=80",
+    category: "gaming",
+    badge: "Sale",
+    title: "Gaming RGB Mouse",
+    price: 79
+  },
+  {
+    id: 14,
+    imgUrl:
+      "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=800&q=80",
+    category: "monitor",
+    badge: "Trending",
+    title: "LG UltraWide 5K",
+    price: 1299
+  },
+  {
+    id: 15,
+    imgUrl:
+      "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&w=800&q=80",
+    category: "accessories",
+    badge: "Hot",
+    title: "Wireless Gaming Keyboard",
+    price: 199
+  },
+  {
+    id: 16,
+    imgUrl:
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80",
+    category: "mobile",
+    badge: "New",
+    title: "Google Pixel Ultra",
+    price: 1099
+  },
+  {
+    id: 17,
+    imgUrl:
+      "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=800&q=80",
+    category: "audio",
+    badge: "Popular",
+    title: "JBL PartyBox Mini",
+    price: 349
+  }
+];
 
 
-export { popularProducts }
+export { popularProducts, trendingProducts }

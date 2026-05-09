@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import SlideCard from "./SlideCard";
+import { trendingProducts } from "../apis/popularApi";
 
 const Slider = () => {
     const [largeIndex, setLargeIndex] = useState(0);
@@ -24,23 +25,23 @@ const Slider = () => {
                 <div className="w-full flex-nowrap hidden sm:flex transition-all duration-300" style={{transform: `translateX(-${largeIndex * 100}%)`,}}>
                     {/* Slide 1 */}
                     <div className="min-w-full grid grid-cols-3 gap-4">
-                        <SlideCard/>
-                        <SlideCard/>
-                        <SlideCard/>
+                        <SlideCard product={trendingProducts[0]}/>
+                        <SlideCard product={trendingProducts[1]}/>
+                        <SlideCard product={trendingProducts[2]}/>
                     </div>
 
                     {/* Slide 2 */}
                     <div className="min-w-full grid grid-cols-3 gap-4">
-                        <SlideCard/>
-                        <SlideCard/>
-                        <SlideCard/>
+                        <SlideCard product={trendingProducts[3]}/>
+                        <SlideCard product={trendingProducts[4]}/>
+                        <SlideCard product={trendingProducts[5]}/>
                     </div>
 
                     {/* Slide 3 */}
                     <div className="min-w-full grid grid-cols-3 gap-4">
-                        <SlideCard/>
-                        <SlideCard/>
-                        <SlideCard/>
+                        <SlideCard product={trendingProducts[6]}/>
+                        <SlideCard product={trendingProducts[7]}/>
+                        <SlideCard product={trendingProducts[8]}/>
                     </div>
                 </div>
 
@@ -53,15 +54,15 @@ const Slider = () => {
     
                 {/* For mobile Width */}
                 <div className="sm:hidden w-full flex-nowrap flex justify-start transition-all duration-300" style={{transform: `translateX(-${smIndex * 100}%)`}}>
-                    <SlideCard/>
-                    <SlideCard/>
-                    <SlideCard/>
-                    <SlideCard/>
-                    <SlideCard/>
-                    <SlideCard/>
-                    <SlideCard/>
-                    <SlideCard/>
-                    <SlideCard/>
+                    <SlideCard product={trendingProducts[0]}/>
+                    <SlideCard product={trendingProducts[1]}/>
+                    <SlideCard product={trendingProducts[2]}/>
+                    <SlideCard product={trendingProducts[3]}/>
+                    <SlideCard product={trendingProducts[4]}/>
+                    <SlideCard product={trendingProducts[5]}/>
+                    <SlideCard product={trendingProducts[6]}/>
+                    <SlideCard product={trendingProducts[7]}/>
+                    <SlideCard product={trendingProducts[8]}/>
                 </div>
 
 
