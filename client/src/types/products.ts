@@ -4,7 +4,9 @@ interface Product  {
     category: string,
     badge: string,
     title: string,
-    price: number
+    price: number,
+    description?: string,
+    specs?: Record<string, string | undefined>;
 }
 
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import SlideCard from "./SlideCard";
-import { trendingProducts } from "../apis/popularApi";
+import { trendingProducts } from "../apis/apis";
 
 const Slider = () => {
     const [largeIndex, setLargeIndex] = useState(0);

@@ -1,5 +1,5 @@
 import type { Product } from "../types/products";
-
+import { Link } from "react-router";
 interface SlideCardProps {
     product: Product
 }
@@ -9,7 +9,7 @@ interface SlideCardProps {
 const SlideCard = ({product}: SlideCardProps) => {
 
     return (
-        <div className=" shrink-0 w-full h-80 border border-gray-800 rounded-2xl overflow-hidden flex flex-col hover:border-blue-400">
+        <Link to={`/product/${product.id}`} className=" shrink-0 w-full h-80 border border-gray-800 rounded-2xl overflow-hidden flex flex-col hover:border-blue-400">
             <div className="flex-1 block w-full aspect-video overflow-hidden ">
                 <img className="w-full h-full object-cover" src={product.imgUrl}/>
             </div>
@@ -27,7 +27,7 @@ const SlideCard = ({product}: SlideCardProps) => {
                     <button className=' size-8 rounded-md bg-gray-800 aspect-square hover:bg-blue-400 hover:text-black'>+</button>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 }
 

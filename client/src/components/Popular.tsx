@@ -1,5 +1,5 @@
 import ProductCard from "./ProductCard";
-import { popularProducts } from "../apis/popularApi";
+import { popularProducts } from "../apis/apis";
 import { useEffect, useState } from "react";
 import type { Product } from "../types/products";
 import ProductSkeleton from "./skeletons/ProductSkeleton";
