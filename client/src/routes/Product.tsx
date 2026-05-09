@@ -18,7 +18,7 @@ const getProductInfo = (id: number, productDetail: ProductType[]) => {
 
 const Product = () => {
     const [product , setProduct] = useState<ProductType | null>(null);
-    const [productCount, setProductCount] = useState(0);
+    const [productCount, setProductCount] = useState(1);
     const { id } = useParams();
 
     useEffect(() => {
@@ -43,8 +43,8 @@ const Product = () => {
         // if e-store-cart exist in local storage then use it
         // else use empty array []
         addToCart(product, productCount);
-        // reset count to 0 again
-        setProductCount(0);
+        // reset count to 1 again
+        setProductCount(1);
     }
 
     if (!product) return ;
@@ -95,7 +95,7 @@ const Product = () => {
                                 <div className="flex border rounded-lg border-gray-800 w-fit overflow-hidden">
                                     <button onClick={() => { setProductCount(prev => prev + 1)}} className="py-2 px-5 hover:bg-gray-800 text-white">+</button>
                                     <p className="py-2 px-5 border-gray-800">{productCount}</p>
-                                    <button onClick={() => { setProductCount(prev => prev > 0 ? prev - 1 : prev)}} className="py-2 px-5 hover:bg-gray-800 text-white">-</button>
+                                    <button onClick={() => { setProductCount(prev => prev > 1 ? prev - 1 : prev)}} className="py-2 px-5 hover:bg-gray-800 text-white">-</button>
                                 </div>
                                 <span className=" text-sm text-gray-400">Qty</span>
                             </div>

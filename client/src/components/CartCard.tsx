@@ -22,7 +22,9 @@ const CartCard = ({item}: CartCardProps) => {
     const { removeFromCart } = context;
 
     // handler function
-    const handleRemoveBtn = (id: number) => {
+    const handleRemoveBtn = (e, id: number) => {
+        e.preventDefault();   // stops Link navigation
+        e.stopPropagation();
         removeFromCart(id);
     }
 
@@ -40,7 +42,7 @@ const CartCard = ({item}: CartCardProps) => {
 
                 <div className="flex items-center gap-2 sm:gap-5">
                     <span className=" font-bowlby text-xs text-blue-400">${item.price * item.qty}</span>
-                    <button onClick={() => {handleRemoveBtn(item.id)}} className="p-2 border border-gray-800 rounded-lg hover:border-red-400 hover:text-red-400"><RxCross1/></button>
+                    <button onClick={(e) => {handleRemoveBtn(e, item.id)}} className="p-2 border border-gray-800 rounded-lg hover:border-red-400 hover:text-red-400"><RxCross1/></button>
                 </div>
             </Link>   
     )
